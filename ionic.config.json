@@ -1,0 +1,7 @@
+{
+  "name": "Appkonversi",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

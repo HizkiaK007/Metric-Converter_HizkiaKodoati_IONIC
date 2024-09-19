@@ -1,20 +1,61 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
+    <ion-title style="background-color: white;color: black; margin-bottom: 30px;">
+      <strong>Metric Converter</strong>
+      <br>
+      <h5>By : Hizkia kodoati</h5>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+
+
+<ion-content>
+    <div id="converter-container">
+      <strong style="margin-left:15px;">Menu</strong>
+      <ion-item>
+        <ion-select placeholder="Pilih Metrik" [(ngModel)]="selectedMetric">
+          <ion-select-option value="length">Panjang</ion-select-option>
+          <ion-select-option value="weight">Massa</ion-select-option>
+          <ion-select-option value="temperature">Suhu</ion-select-option>
+        </ion-select>
+      </ion-item>
+  
+      <ion-item>
+        <ion-select placeholder="Pilih Satuan" [(ngModel)]="selectedUnit1">
+          <ion-select-option *ngIf="selectedMetric === 'length'" value="meter">Meter</ion-select-option>
+          <ion-select-option *ngIf="selectedMetric === 'length'" value="kilometer">Kilometer</ion-select-option>
+          <ion-select-option *ngIf="selectedMetric === 'weight'" value="gram">Gram</ion-select-option>
+          <ion-select-option *ngIf="selectedMetric === 'weight'" value="kilogram">Kilogram</ion-select-option>
+          <ion-select-option *ngIf="selectedMetric === 'temperature'" value="celsius">Celsius</ion-select-option>
+          <ion-select-option *ngIf="selectedMetric === 'temperature'" value="fahrenheit">Fahrenheit</ion-select-option>
+        </ion-select>
+      </ion-item>
+  
+      <strong style="margin-left:15px;">Ke:</strong>
+      <ion-item>
+        <ion-select placeholder="Pilih Satuan" [(ngModel)]="selectedUnit2">
+          <ion-select-option *ngIf="selectedMetric === 'length'" value="meter">Meter</ion-select-option>
+          <ion-select-option *ngIf="selectedMetric === 'length'" value="kilometer">Kilometer</ion-select-option>
+          <ion-select-option *ngIf="selectedMetric === 'weight'" value="gram">Gram</ion-select-option>
+          <ion-select-option *ngIf="selectedMetric === 'weight'" value="kilogram">Kilogram</ion-select-option>
+          <ion-select-option *ngIf="selectedMetric === 'temperature'" value="celsius">Celsius</ion-select-option>
+          <ion-select-option *ngIf="selectedMetric === 'temperature'" value="fahrenheit">Fahrenheit</ion-select-option>
+        </ion-select>
+      </ion-item>
+  
+      <!-- Input untuk nilai awal -->
+      <ion-item>
+        <ion-input label="Nilai Awal =" type="number" [(ngModel)]="initialValue"></ion-input>
+      </ion-item>
+  
+      <!-- Tombol konversi -->
+      <ion-button expand="full" (click)="convert()">Konversi</ion-button>
+  
+      <!-- Hasil konversi -->
+      <div *ngIf="result !== null">
+        <strong>Hasil Konversi: {{ result }}</strong>
+      </div>
+    </div>
 </ion-content>
